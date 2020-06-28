@@ -119,10 +119,12 @@ def showPlot(points):
     ax.yaxis.set_major_locator(loc)
     plt.plot(points)
 
-
 input_lang, output_lang, pairs = prepareData('eng', 'fra', True)
 hidden_size = 256
 encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
 
 trainIters(encoder1, attn_decoder1, 75000, print_every=5000)
+
+torch.save(encoder1.state_dict(), 'models/encoder1.bin')
+torch.save(attn_decoder1.state_dict(), 'models/attn_decoder1.bin')
