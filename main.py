@@ -125,6 +125,7 @@ encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
 attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).to(device)
 
 trainIters(encoder1, attn_decoder1, 75000, print_every=5000)
+#trainIters(encoder1, attn_decoder1, n_iters=100, print_every=10, plot_every=10)
 
 torch.save(encoder1.state_dict(), 'models/encoder1.bin')
 torch.save(attn_decoder1.state_dict(), 'models/attn_decoder1.bin')
